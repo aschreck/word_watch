@@ -43,10 +43,12 @@ function paragraphHandler() {
 
 function processInput() {
   var paragraph = $("textarea").val()
-  var noCommaParagraph = paragraph.replace(/,/g, "")
-  var noPeriodParagraph = noCommaParagraph.replace(/\./g, ' ')
-  var noApostropheParagraph = noPeriodParagraph.replace(/'/g, '');
-  return noApostropheParagraph.split(' ')
+  paragraph = paragraph.replace(/,/g, "")
+  paragraph = paragraph.replace(/\./g, ' ')
+  paragraph = paragraph.replace(/'/g, '');
+  paragraph = paragraph.replace(/-/g, '')
+
+  return paragraph.split(' ')
 }
 
 function tallyWordCount(words) {
