@@ -33,14 +33,20 @@ function btnListener() {
 }
 
 function paragraphHandler() {
-  var paragraph = $("textarea").val()
-  var splitPara = paragraph.split(' ')
-  var tally = tallyWordCount(splitPara)
+  var processedParagraph = processInput()
+  var tally = tallyWordCount(processedParagraph)
 
   for (var word in tally) {
     postWordToDb(word)
     appendWordToPage(tally, word)
   }
+}
+
+function processInput() {
+  var paragraph = $("textarea").val()
+  var noCommaParagraph = paragraph.replace(/,/g, "")
+  var noPeriodParagraph = noCommaParagraph.replace(/\./g, ' ')
+  return noPeriodParagraph.split(' ')
 }
 
 function tallyWordCount(words) {
