@@ -19,7 +19,6 @@ function addApiWord() {
     .catch(function (error) { console.error(error) })
 }
 
-//add a listener on the text box.
 function enterListener() {
   $(document).keypress(function(e) {
     if (e.which == '13') {
@@ -46,7 +45,8 @@ function processInput() {
   var paragraph = $("textarea").val()
   var noCommaParagraph = paragraph.replace(/,/g, "")
   var noPeriodParagraph = noCommaParagraph.replace(/\./g, ' ')
-  return noPeriodParagraph.split(' ')
+  var noApostropheParagraph = noPeriodParagraph.replace(/'/g, '');
+  return noApostropheParagraph.split(' ')
 }
 
 function tallyWordCount(words) {
@@ -61,7 +61,6 @@ function tallyWordCount(words) {
   }, {})
   return tally
 }
-
 
 function postWordToDb (inputWord){
   var jsonObj = {word: {value: inputWord}}
